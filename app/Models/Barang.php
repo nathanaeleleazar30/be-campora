@@ -29,6 +29,8 @@ class Barang extends Model
         'harga_per_hari',
         'stok_total',
         'is_aktif',
+        'rating',
+        'jumlah_review',
     ];
 
     /**
@@ -38,6 +40,8 @@ class Barang extends Model
         'harga_per_hari' => 'decimal:2',
         'stok_total'     => 'integer',
         'is_aktif'       => 'boolean',
+        'rating'         => 'float',
+        'jumlah_review'  => 'integer',
     ];
 
     // ----------------------------------------------------------------
