@@ -12,7 +12,7 @@ class AdminSeeder extends Seeder
         Admin::updateOrCreate(
             ['username' => 'admin'],
             [
-                'password_hash' => bcrypt('admin123'),
+                'password_hash' => bcrypt('Admin123@'),
                 'email' => 'admin@campora.com',
             ]
         );
