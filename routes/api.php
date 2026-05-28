@@ -66,6 +66,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/testimonis',                        [TestimoniController::class, 'adminIndex']);
     Route::post('/testimonis',                       [TestimoniController::class, 'store']);
     Route::put('/testimonis/{testimoni}',            [TestimoniController::class, 'update']);
+    Route::post('/testimonis/{testimoni}/update',    [TestimoniController::class, 'update']); // FormData upload (foto)
     Route::patch('/testimonis/{testimoni}/approve',  [TestimoniController::class, 'approve']);
     Route::patch('/testimonis/{testimoni}/unapprove',[TestimoniController::class, 'unapprove']);
     Route::delete('/testimonis/{testimoni}',         [TestimoniController::class, 'destroy']);

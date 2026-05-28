@@ -77,6 +77,7 @@ class TestimoniController extends Controller
     {
         $validated = $request->validate([
             'nama_customer' => 'sometimes|string|max:150',
+            'foto_customer' => 'nullable|image|mimes:jpeg,png,webp|max:2048',
             'rating'        => 'sometimes|integer|min:1|max:5',
             'isi_review'    => 'sometimes|string',
             'produk_disewa' => 'nullable|string|max:200',
@@ -84,6 +85,24 @@ class TestimoniController extends Controller
             'is_approved'   => 'sometimes|boolean',
             'id_admin'      => 'nullable|exists:admins,id_admin',
         ]);
+
+        // Handle photo upload
+        if ($request->hasFile('foto_customer')) {
+            // Delete old photo if exists
+            if ($testimoni->foto_customer) {
+                $oldPath = str_replace('/storage/', '', parse_url($testimoni->foto_customer, PHP_URL_PATH));
+                \Illuminate\Support\Facades\Storage::disk('public')->delete($oldPath);
+            }
+            $path = $request->file('foto_customer')->store('testimonis', 'public');
+            $validated['foto_customer'] = \Illuminate\Support\Facades\Storage::url($path);
+        } elseif ($request->input('remove_foto') === '1') {
+            // Explicit request to remove photo
+            if ($testimoni->foto_customer) {
+                $oldPath = str_replace('/storage/', '', parse_url($testimoni->foto_customer, PHP_URL_PATH));
+                \Illuminate\Support\Facades\Storage::disk('public')->delete($oldPath);
+            }
+            $validated['foto_customer'] = null;
+        }
 
         $testimoni->update($validated);
 
