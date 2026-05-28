@@ -63,9 +63,12 @@ Route::prefix('admin')->group(function () {
     Route::delete('/faqs/{faq}',  [FaqController::class, 'destroy']);
 
     // Testimoni moderation
-    Route::put('/testimonis/{testimoni}',    [TestimoniController::class, 'update']);
-    Route::delete('/testimonis/{testimoni}', [TestimoniController::class, 'destroy']);
-    Route::post('/testimonis',               [TestimoniController::class, 'store']);
+    Route::get('/testimonis',                        [TestimoniController::class, 'adminIndex']);
+    Route::post('/testimonis',                       [TestimoniController::class, 'store']);
+    Route::put('/testimonis/{testimoni}',            [TestimoniController::class, 'update']);
+    Route::patch('/testimonis/{testimoni}/approve',  [TestimoniController::class, 'approve']);
+    Route::patch('/testimonis/{testimoni}/unapprove',[TestimoniController::class, 'unapprove']);
+    Route::delete('/testimonis/{testimoni}',         [TestimoniController::class, 'destroy']);
 
     // Paket
     Route::post('/pakets',               [PaketController::class, 'store']);
