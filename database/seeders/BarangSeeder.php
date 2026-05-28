@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Barang;
 use App\Models\KategoriBarang;
+use App\Models\FotoBarang;
 use Illuminate\Database\Seeder;
 
 class BarangSeeder extends Seeder
@@ -191,6 +192,29 @@ class BarangSeeder extends Seeder
             ],
         ];
 
+        $fotoMapping = [
+            'Tenda 2 Orang' => 'tenda 2 orang.png',
+            'Head Lamp' => 'head lamp.png',
+            'Tenda Family 8 Orang' => 'tenda 8 orang.png',
+            'Jacket Gunung' => 'jacket gunung.png',
+            'Snow Jacket' => 'snow jacket.png',
+            'Carrier Bag 40L' => 'carrier bag 40L.png',
+            'Tenda Family 4 Orang' => 'tenda family 4 orang.png',
+            'Jacket Outdoor' => 'jacket outdoor.png',
+            'Jacket Gunung Premium' => 'jacket gunung orange.png',
+            'Sleeping Bag Pillow' => 'sleeping bag standar.png',
+            'Sepatu Hiking' => 'sepatu hiking solomon.png',
+            'Carrier 80L' => 'carrier 80L.png',
+            'Sleeping Bag Big' => 'sleeping bag big.png',
+            'Carrier Bag 60L' => 'carrier bag 60L.png',
+            'Cooking Set' => 'cooking set.png',
+            'Trekking Pole' => 'trekking pole.png',
+            'Tenda 8 Orang' => 'tenda 8 orang.png',
+            'Cooking Set Portable' => 'cooking set.png',
+            'Carrier Bag 20L' => 'carrier bag 20L.png',
+            'Sleeping Bag Standar' => 'sleeping bag standar putih.png',
+        ];
+
         foreach ($barangs as $data) {
             $kategoriName = $data['kategori'];
             unset($data['kategori']);
@@ -201,13 +225,23 @@ class BarangSeeder extends Seeder
                 continue;
             }
 
-            Barang::updateOrCreate(
+            $barang = Barang::updateOrCreate(
                 ['nama_barang' => $data['nama_barang']],
                 array_merge($data, [
                     'id_kategori' => $idKategori,
                     'is_aktif'    => true,
                 ])
             );
+
+            // Seed Foto Barang jika ada di mapping
+            if (isset($fotoMapping[$barang->nama_barang])) {
+                FotoBarang::updateOrCreate(
+                    [
+                        'id_barang' => $barang->id_barang,
+                        'url_foto'  => '/images/' . $fotoMapping[$barang->nama_barang]
+                    ]
+                );
+            }
         }
     }
 }

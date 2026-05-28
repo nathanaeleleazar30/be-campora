@@ -25,15 +25,19 @@ class Testimoni extends Model
         'foto_customer',
         'rating',
         'isi_review',
+        'produk_disewa',
+        'kegiatan',
         'id_admin',
+        'is_approved',
     ];
 
     /**
      * The attributes that should be cast.
      */
     protected $casts = [
-        'rating'   => 'integer',
-        'id_admin' => 'integer',
+        'rating'      => 'integer',
+        'id_admin'    => 'integer',
+        'is_approved' => 'boolean',
     ];
 
     // ----------------------------------------------------------------
