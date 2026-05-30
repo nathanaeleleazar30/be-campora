@@ -9,7 +9,7 @@ class KategoriBarangSeeder extends Seeder
 {
     /**
      * Seed kategori barang dari data frontend (products.ts & HomePage.tsx).
-     * Kategori: Tenda, Carrier, Sleeping Bag, Perlengkapan, Pakaian, Sepatu
+     * Kategori: Tenda, Carrier, Sleeping Bag, Perlengkapan
      */
     public function run(): void
     {

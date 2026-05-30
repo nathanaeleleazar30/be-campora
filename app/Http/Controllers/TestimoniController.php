@@ -46,7 +46,7 @@ class TestimoniController extends Controller
         $validated = $request->validate([
             'nama_customer'  => 'required|string|max:150',
             'foto_customer'  => 'nullable|image|mimes:jpeg,png,webp|max:1024',
-            'rating'         => 'required|integer|min:1|max:5',
+            'rating'         => 'required|integer|min:0|max:5',
             'isi_review'     => 'required|string',
             'produk_disewa'  => 'nullable|string|max:200',
             'kegiatan'       => 'nullable|string|max:200',
@@ -78,7 +78,7 @@ class TestimoniController extends Controller
         $validated = $request->validate([
             'nama_customer' => 'sometimes|string|max:150',
             'foto_customer' => 'nullable|image|mimes:jpeg,png,webp|max:2048',
-            'rating'        => 'sometimes|integer|min:1|max:5',
+            'rating'        => 'sometimes|integer|min:0|max:5',
             'isi_review'    => 'sometimes|string',
             'produk_disewa' => 'nullable|string|max:200',
             'kegiatan'      => 'nullable|string|max:200',
