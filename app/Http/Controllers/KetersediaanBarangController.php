@@ -96,6 +96,59 @@ class KetersediaanBarangController extends Controller
     }
 
     /**
+     * Bulk sync dates from calendar.
+     *
+     * POST /api/ketersediaan/sync
+     */
+    public function syncDates(Request $request): JsonResponse
+    {
+        $request->validate([
+            'id_barang' => 'required|exists:barangs,id_barang',
+            'id_admin'  => 'required|exists:admins,id_admin',
+            'changes'   => 'required|array',
+            'changes.*.date'   => 'required|date',
+            'changes.*.status' => 'required|in:merah,hijau',
+        ]);
+
+        $idBarang = $request->id_barang;
+        $idAdmin = $request->id_admin;
+
+        foreach ($request->changes as $change) {
+            $date = $change['date'];
+            $status = $change['status'];
+
+            if ($status === 'merah') {
+                // If not exist for this exact date, create
+                $exists = KetersediaanBarang::where('id_barang', $idBarang)
+                            ->where('tanggal_mulai', '<=', $date)
+                            ->where('tanggal_selesai', '>=', $date)
+                            ->exists();
+                
+                if (!$exists) {
+                    KetersediaanBarang::create([
+                        'id_barang' => $idBarang,
+                        'id_admin'  => $idAdmin,
+                        'tanggal_mulai' => $date,
+                        'tanggal_selesai' => $date,
+                        'stok_disewa' => 1,
+                        'catatan' => 'Manual block from calendar'
+                    ]);
+                }
+            } else if ($status === 'hijau') {
+                // Delete existing bookings that cover this date
+                KetersediaanBarang::where('id_barang', $idBarang)
+                            ->where('tanggal_mulai', '<=', $date)
+                            ->where('tanggal_selesai', '>=', $date)
+                            ->delete();
+            }
+        }
+
+        return response()->json([
+            'message' => 'Status ketersediaan berhasil disinkronkan.',
+        ]);
+    }
+
+    /**
      * Check real-time stock availability for a given barang and date range.
      *
      * GET /api/ketersediaan/check?id_barang=1&tanggal_mulai=2025-07-01&tanggal_selesai=2025-07-05
