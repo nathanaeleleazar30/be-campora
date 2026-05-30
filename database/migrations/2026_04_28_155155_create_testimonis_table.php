@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('id_testimoni');
             $table->string('nama_customer', 150);
             $table->string('foto_customer')->nullable();
-            $table->tinyInteger('rating')->unsigned()->default(5);
+            $table->tinyInteger('rating')->unsigned()->default(0);
             $table->text('isi_review');
             $table->foreignId('id_admin')
                   ->nullable()

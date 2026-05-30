@@ -8,8 +8,38 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
-class KetersediaanController extends Controller
+class KetersediaanBarangController extends Controller
 {
+    /**
+     * Return real-time stock availability for ALL active barangs for today.
+     * Used by the customer frontend to hide out-of-stock items.
+     *
+     * GET /api/ketersediaan/today
+     */
+    public function checkToday(): JsonResponse
+    {
+        $today = Carbon::today()->toDateString();
+
+        $barangs = Barang::where('is_aktif', true)->get();
+
+        $result = $barangs->map(function (Barang $barang) use ($today) {
+            $stokDisewa = KetersediaanBarang::where('id_barang', $barang->id_barang)
+                ->where('tanggal_mulai', '<=', $today)
+                ->where('tanggal_selesai', '>=', $today)
+                ->sum('stok_disewa');
+
+            $stokTersedia = max(0, $barang->stok_total - $stokDisewa);
+
+            return [
+                'id_barang'     => $barang->id_barang,
+                'stok_tersedia' => $stokTersedia,
+                'tersedia'      => $stokTersedia > 0,
+            ];
+        });
+
+        return response()->json($result);
+    }
+
     /**
      * Display a listing of ketersediaan records.
      * Optionally filter by id_barang.
