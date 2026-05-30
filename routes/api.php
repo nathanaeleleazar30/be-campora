@@ -6,7 +6,7 @@ use App\Http\Controllers\FaqController;
 use App\Http\Controllers\FotoBarangController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\KategoriBarangController;
-use App\Http\Controllers\KetersediaanController;
+use App\Http\Controllers\KetersediaanBarangController;
 use App\Http\Controllers\PaketController;
 use App\Http\Controllers\TestimoniController;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +28,8 @@ Route::get('/faqs',          [FaqController::class, 'index']);
 Route::get('/testimonis',    [TestimoniController::class, 'index']);
 Route::post('/testimonis',   [TestimoniController::class, 'store']);
 Route::get('/pakets',        [PaketController::class, 'index']);
+Route::get('/ketersediaan/today', [KetersediaanBarangController::class, 'checkToday']);
+
 
 // ── Admin (protected) ───────────────────────────────────────────────
 Route::prefix('admin')->group(function () {
@@ -51,11 +53,11 @@ Route::prefix('admin')->group(function () {
     Route::delete('/kategori/{kategoriBarang}', [KategoriBarangController::class, 'destroy']);
 
     // Ketersediaan
-    Route::get('/ketersediaan',              [KetersediaanController::class, 'index']);
-    Route::post('/ketersediaan',             [KetersediaanController::class, 'store']);
-    Route::get('/ketersediaan/check',        [KetersediaanController::class, 'checkAvailability']);
-    Route::put('/ketersediaan/{ketersediaan}',[KetersediaanController::class, 'update']);
-    Route::delete('/ketersediaan/{ketersediaan}', [KetersediaanController::class, 'destroy']);
+    Route::get('/ketersediaan',              [KetersediaanBarangController::class, 'index']);
+    Route::post('/ketersediaan',             [KetersediaanBarangController::class, 'store']);
+    Route::get('/ketersediaan/check',        [KetersediaanBarangController::class, 'checkAvailability']);
+    Route::put('/ketersediaan/{ketersediaan}',[KetersediaanBarangController::class, 'update']);
+    Route::delete('/ketersediaan/{ketersediaan}', [KetersediaanBarangController::class, 'destroy']);
 
     // FAQ
     Route::post('/faqs',          [FaqController::class, 'store']);
@@ -63,9 +65,13 @@ Route::prefix('admin')->group(function () {
     Route::delete('/faqs/{faq}',  [FaqController::class, 'destroy']);
 
     // Testimoni moderation
-    Route::put('/testimonis/{testimoni}',    [TestimoniController::class, 'update']);
-    Route::delete('/testimonis/{testimoni}', [TestimoniController::class, 'destroy']);
-    Route::post('/testimonis',               [TestimoniController::class, 'store']);
+    Route::get('/testimonis',                        [TestimoniController::class, 'adminIndex']);
+    Route::post('/testimonis',                       [TestimoniController::class, 'store']);
+    Route::put('/testimonis/{testimoni}',            [TestimoniController::class, 'update']);
+    Route::post('/testimonis/{testimoni}/update',    [TestimoniController::class, 'update']); // FormData upload (foto)
+    Route::patch('/testimonis/{testimoni}/approve',  [TestimoniController::class, 'approve']);
+    Route::patch('/testimonis/{testimoni}/unapprove',[TestimoniController::class, 'unapprove']);
+    Route::delete('/testimonis/{testimoni}',         [TestimoniController::class, 'destroy']);
 
     // Paket
     Route::post('/pakets',               [PaketController::class, 'store']);
