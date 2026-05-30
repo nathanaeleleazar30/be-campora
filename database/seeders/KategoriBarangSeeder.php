@@ -9,7 +9,7 @@ class KategoriBarangSeeder extends Seeder
 {
     /**
      * Seed kategori barang dari data frontend (products.ts & HomePage.tsx).
-     * Kategori: Tenda, Carrier, Sleeping Bag, Perlengkapan, Pakaian, Sepatu
+     * Kategori: Tenda, Carrier, Sleeping Bag, Perlengkapan
      */
     public function run(): void
     {
@@ -18,8 +18,6 @@ class KategoriBarangSeeder extends Seeder
             ['nama_kategori' => 'Carrier',      'slug' => 'carrier'],
             ['nama_kategori' => 'Sleeping Bag', 'slug' => 'sleeping-bag'],
             ['nama_kategori' => 'Perlengkapan', 'slug' => 'perlengkapan'],
-            ['nama_kategori' => 'Pakaian',      'slug' => 'pakaian'],
-            ['nama_kategori' => 'Sepatu',       'slug' => 'sepatu'],
         ];
 
         foreach ($kategoris as $kategori) {
