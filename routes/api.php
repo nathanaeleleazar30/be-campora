@@ -50,9 +50,9 @@ Route::prefix('admin')->group(function () {
     Route::put('/kategori/{kategoriBarang}',[KategoriBarangController::class, 'update']);
     Route::delete('/kategori/{kategoriBarang}', [KategoriBarangController::class, 'destroy']);
 
-    // Ketersediaan
     Route::get('/ketersediaan',              [KetersediaanController::class, 'index']);
     Route::post('/ketersediaan',             [KetersediaanController::class, 'store']);
+    Route::post('/ketersediaan/sync',        [KetersediaanController::class, 'syncDates']);
     Route::get('/ketersediaan/check',        [KetersediaanController::class, 'checkAvailability']);
     Route::put('/ketersediaan/{ketersediaan}',[KetersediaanController::class, 'update']);
     Route::delete('/ketersediaan/{ketersediaan}', [KetersediaanController::class, 'destroy']);

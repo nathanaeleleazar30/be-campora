@@ -180,7 +180,7 @@ class BarangSeeder extends Seeder
             // ── Pakaian ────────────────────────────────────────────────────
             [
                 'nama_barang'    => 'Jacket Gunung',
-                'kategori'       => 'Pakaian',
+                'kategori'       => 'Perlengkapan',
                 'harga_per_hari' => 20000,
                 'merk'           => 'The North Face',
                 'spesifikasi'    => "Jaket gunung anti angin dan air untuk pendakian.\n\nFitur:\n- Anti Angin\n- Waterproof\n- Ringan\n- Pockets",
@@ -190,7 +190,7 @@ class BarangSeeder extends Seeder
             ],
             [
                 'nama_barang'    => 'Snow Jacket',
-                'kategori'       => 'Pakaian',
+                'kategori'       => 'Perlengkapan',
                 'harga_per_hari' => 30000,
                 'merk'           => 'Columbia',
                 'spesifikasi'    => "Jaket tebal untuk suhu sangat dingin dan salju.\n\nFitur:\n- Insulated\n- Waterproof\n- Hood\n- Warm Lining",
@@ -200,7 +200,7 @@ class BarangSeeder extends Seeder
             ],
             [
                 'nama_barang'    => 'Jacket Outdoor',
-                'kategori'       => 'Pakaian',
+                'kategori'       => 'Perlengkapan',
                 'harga_per_hari' => 25000,
                 'merk'           => 'Patagonia',
                 'spesifikasi'    => "Jaket outdoor serbaguna untuk berbagai aktivitas luar ruang.\n\nFitur:\n- Breathable\n- Wind Resistant\n- Packable\n- Lightweight",
@@ -210,7 +210,7 @@ class BarangSeeder extends Seeder
             ],
             [
                 'nama_barang'    => 'Jacket Gunung Premium',
-                'kategori'       => 'Pakaian',
+                'kategori'       => 'Perlengkapan',
                 'harga_per_hari' => 25000,
                 'merk'           => "Arc'teryx",
                 'spesifikasi'    => "Jaket gunung premium dengan teknologi terkini.\n\nFitur:\n- Gore-Tex\n- Waterproof\n- Breathable\n- Seam Sealed",
@@ -222,7 +222,7 @@ class BarangSeeder extends Seeder
             // ── Sepatu ─────────────────────────────────────────────────────
             [
                 'nama_barang'    => 'Sepatu Hiking',
-                'kategori'       => 'Sepatu',
+                'kategori'       => 'Perlengkapan',
                 'harga_per_hari' => 30000,
                 'merk'           => 'Salomon',
                 'spesifikasi'    => "Sepatu hiking waterproof dengan grip anti-slip.\n\nFitur:\n- Waterproof\n- Anti-Slip Sole\n- Ankle Support\n- Breathable",
