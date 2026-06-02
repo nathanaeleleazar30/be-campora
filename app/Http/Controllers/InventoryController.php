@@ -13,21 +13,34 @@ class InventoryController extends Controller
 {
     public function dashboard(): JsonResponse
     {
+        $today = Carbon::today()->toDateString();
+
         $totalBarang   = Barang::count();
-        $activeBarang  = Barang::where('is_aktif', true)->count();
         $totalKategori = KategoriBarang::count();
 
-        $today = Carbon::today()->toDateString();
-        $sewaHariIni = KetersediaanBarang::where('tanggal_mulai', '<=', $today)
-            ->where('tanggal_selesai', '>=', $today)
-            ->count();
+        // Total unit barang yang sedang disewa hari ini
+        $sewaHariIni = KetersediaanBarang::whereDate('tanggal_mulai', '<=', $today)
+            ->whereDate('tanggal_selesai', '>=', $today)
+            ->sum('stok_disewa');
+
+        // Barang tersedia = barang yg stoknya belum habis di-booking hari ini
+        $barangs = Barang::all();
+        $barangTersedia = 0;
+        foreach ($barangs as $barang) {
+            $stokDisewa = KetersediaanBarang::where('id_barang', $barang->id_barang)
+                ->whereDate('tanggal_mulai', '<=', $today)
+                ->whereDate('tanggal_selesai', '>=', $today)
+                ->sum('stok_disewa');
+            if ($barang->stok_total - $stokDisewa > 0) {
+                $barangTersedia++;
+            }
+        }
 
         return response()->json([
-            'total_barang'    => $totalBarang,
-            'barang_aktif'    => $activeBarang,
-            'barang_nonaktif' => $totalBarang - $activeBarang,
-            'total_kategori'  => $totalKategori,
-            'sewa_hari_ini'   => $sewaHariIni,
+            'total_barang'   => $totalBarang,
+            'barang_aktif'   => $barangTersedia,
+            'total_kategori' => $totalKategori,
+            'sewa_hari_ini'  => $sewaHariIni,
         ]);
     }
 
