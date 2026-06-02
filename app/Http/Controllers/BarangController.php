@@ -11,8 +11,7 @@ class BarangController extends Controller
 {
     public function index(Request $request): JsonResponse
     {
-        $query = Barang::with(['kategori', 'fotos'])
-            ->where('is_aktif', true);
+        $query = Barang::with(['kategori', 'fotos']);
 
         if ($request->filled('id_kategori')) {
             $query->where('id_kategori', $request->id_kategori);
@@ -36,7 +35,6 @@ class BarangController extends Controller
             'spesifikasi'   => 'nullable|string',
             'harga_per_hari'=> 'required|numeric|min:0',
             'stok_total'    => 'required|integer|min:0',
-            'is_aktif'      => 'boolean',
         ]);
 
         $barang = Barang::create($validated);
@@ -63,7 +61,6 @@ class BarangController extends Controller
             'spesifikasi'   => 'nullable|string',
             'harga_per_hari'=> 'sometimes|numeric|min:0',
             'stok_total'    => 'sometimes|integer|min:0',
-            'is_aktif'      => 'boolean',
         ]);
 
         $barang->update($validated);
@@ -76,10 +73,10 @@ class BarangController extends Controller
 
     public function destroy(Barang $barang): JsonResponse
     {
-        $barang->update(['is_aktif' => false]);
+        $barang->delete();
 
         return response()->json([
-            'message' => 'Barang berhasil dinonaktifkan.',
+            'message' => 'Barang berhasil dihapus.',
         ]);
     }
 }

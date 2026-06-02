@@ -14,7 +14,7 @@ class KetersediaanBarangController extends Controller
     {
         $today = Carbon::today()->toDateString();
 
-        $barangs = Barang::where('is_aktif', true)->get();
+        $barangs = Barang::all();
 
         $result = $barangs->map(function (Barang $barang) use ($today) {
             $stokDisewa = KetersediaanBarang::where('id_barang', $barang->id_barang)
