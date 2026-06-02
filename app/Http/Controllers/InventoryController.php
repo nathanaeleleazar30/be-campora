@@ -11,18 +11,12 @@ use Illuminate\Support\Carbon;
 
 class InventoryController extends Controller
 {
-    /**
-     * Admin Inventory Dashboard: summary stats.
-     *
-     * GET /api/admin/inventory/dashboard
-     */
     public function dashboard(): JsonResponse
     {
         $totalBarang   = Barang::count();
         $activeBarang  = Barang::where('is_aktif', true)->count();
         $totalKategori = KategoriBarang::count();
 
-        // Items currently being rented today
         $today = Carbon::today()->toDateString();
         $sewaHariIni = KetersediaanBarang::where('tanggal_mulai', '<=', $today)
             ->where('tanggal_selesai', '>=', $today)
@@ -37,11 +31,6 @@ class InventoryController extends Controller
         ]);
     }
 
-    /**
-     * List items with low stock (stok_total below a threshold).
-     *
-     * GET /api/admin/inventory/low-stock?threshold=5
-     */
     public function lowStock(Request $request): JsonResponse
     {
         $threshold = $request->integer('threshold', 5);
@@ -59,11 +48,6 @@ class InventoryController extends Controller
         ]);
     }
 
-    /**
-     * Restock a barang by incrementing its stok_total.
-     *
-     * PATCH /api/admin/inventory/{barang}/restock
-     */
     public function restock(Request $request, Barang $barang): JsonResponse
     {
         $validated = $request->validate([

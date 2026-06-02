@@ -10,11 +10,6 @@ use Illuminate\Support\Facades\Storage;
 
 class FotoBarangController extends Controller
 {
-    /**
-     * Upload and attach a new photo to a barang.
-     *
-     * POST /api/barangs/{barang}/fotos
-     */
     public function store(Request $request, Barang $barang): JsonResponse
     {
         $request->validate([
@@ -34,14 +29,8 @@ class FotoBarangController extends Controller
         ], 201);
     }
 
-    /**
-     * Delete a photo by its ID.
-     *
-     * DELETE /api/fotos/{foto}
-     */
     public function destroy(FotoBarang $fotoBarang): JsonResponse
     {
-        // Optionally delete the file from disk
         $relativePath = str_replace('/storage/', '', $fotoBarang->url_foto);
         Storage::disk('public')->delete($relativePath);
 

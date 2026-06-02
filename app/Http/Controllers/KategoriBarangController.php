@@ -9,21 +9,11 @@ use Illuminate\Support\Str;
 
 class KategoriBarangController extends Controller
 {
-    /**
-     * List all categories.
-     *
-     * GET /api/kategori
-     */
     public function index(): JsonResponse
     {
         return response()->json(KategoriBarang::withCount('barangs')->get());
     }
 
-    /**
-     * Store a new category.
-     *
-     * POST /api/kategori
-     */
     public function store(Request $request): JsonResponse
     {
         $validated = $request->validate([
@@ -38,11 +28,6 @@ class KategoriBarangController extends Controller
         return response()->json(['message' => 'Kategori berhasil ditambahkan.', 'data' => $kategori], 201);
     }
 
-    /**
-     * Update an existing category.
-     *
-     * PUT /api/kategori/{id}
-     */
     public function update(Request $request, KategoriBarang $kategoriBarang): JsonResponse
     {
         $validated = $request->validate([
@@ -59,11 +44,6 @@ class KategoriBarangController extends Controller
         return response()->json(['message' => 'Kategori berhasil diperbarui.', 'data' => $kategoriBarang->fresh()]);
     }
 
-    /**
-     * Delete a category (only if no barangs are attached — enforced by DB FK).
-     *
-     * DELETE /api/kategori/{id}
-     */
     public function destroy(KategoriBarang $kategoriBarang): JsonResponse
     {
         $kategoriBarang->delete();

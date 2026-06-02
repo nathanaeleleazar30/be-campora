@@ -8,11 +8,6 @@ use Illuminate\Http\Request;
 
 class TestimoniController extends Controller
 {
-    /**
-     * List all APPROVED testimonials (public — frontend customer).
-     *
-     * GET /api/testimonis
-     */
     public function index(): JsonResponse
     {
         $testimonis = Testimoni::where('is_approved', true)
@@ -22,11 +17,6 @@ class TestimoniController extends Controller
         return response()->json($testimonis);
     }
 
-    /**
-     * List ALL testimonials regardless of approval (admin moderation panel).
-     *
-     * GET /api/admin/testimonis
-     */
     public function adminIndex(): JsonResponse
     {
         $testimonis = Testimoni::orderByDesc('created_at')->paginate(50);
@@ -34,13 +24,6 @@ class TestimoniController extends Controller
         return response()->json($testimonis);
     }
 
-    /**
-     * Store a new testimonial.
-     * - When called by customer (POST /api/testimonis): is_approved defaults to false (pending)
-     * - When called by admin (POST /api/admin/testimonis): can pass is_approved = true directly
-     *
-     * POST /api/testimonis  |  POST /api/admin/testimonis
-     */
     public function store(Request $request): JsonResponse
     {
         $validated = $request->validate([
@@ -58,7 +41,6 @@ class TestimoniController extends Controller
             $validated['foto_customer'] = \Illuminate\Support\Facades\Storage::url($path);
         }
 
-        // Customers always start as pending; admin can override
         if (!isset($validated['is_approved'])) {
             $validated['is_approved'] = false;
         }
@@ -68,11 +50,6 @@ class TestimoniController extends Controller
         return response()->json(['message' => 'Testimoni berhasil dikirim. Terima kasih!', 'data' => $testimoni], 201);
     }
 
-    /**
-     * Update a testimonial (admin moderation).
-     *
-     * PUT /api/admin/testimonis/{id}
-     */
     public function update(Request $request, Testimoni $testimoni): JsonResponse
     {
         $validated = $request->validate([
@@ -86,9 +63,7 @@ class TestimoniController extends Controller
             'id_admin'      => 'nullable|exists:admins,id_admin',
         ]);
 
-        // Handle photo upload
         if ($request->hasFile('foto_customer')) {
-            // Delete old photo if exists
             if ($testimoni->foto_customer) {
                 $oldPath = str_replace('/storage/', '', parse_url($testimoni->foto_customer, PHP_URL_PATH));
                 \Illuminate\Support\Facades\Storage::disk('public')->delete($oldPath);
@@ -96,7 +71,6 @@ class TestimoniController extends Controller
             $path = $request->file('foto_customer')->store('testimonis', 'public');
             $validated['foto_customer'] = \Illuminate\Support\Facades\Storage::url($path);
         } elseif ($request->input('remove_foto') === '1') {
-            // Explicit request to remove photo
             if ($testimoni->foto_customer) {
                 $oldPath = str_replace('/storage/', '', parse_url($testimoni->foto_customer, PHP_URL_PATH));
                 \Illuminate\Support\Facades\Storage::disk('public')->delete($oldPath);
@@ -109,11 +83,6 @@ class TestimoniController extends Controller
         return response()->json(['message' => 'Testimoni berhasil diperbarui.', 'data' => $testimoni->fresh()]);
     }
 
-    /**
-     * Approve a testimonial (show on frontend).
-     *
-     * PATCH /api/admin/testimonis/{id}/approve
-     */
     public function approve(Testimoni $testimoni): JsonResponse
     {
         $testimoni->update(['is_approved' => true]);
@@ -121,11 +90,6 @@ class TestimoniController extends Controller
         return response()->json(['message' => 'Testimoni disetujui dan akan tampil di frontend.', 'data' => $testimoni->fresh()]);
     }
 
-    /**
-     * Unapprove / hide a testimonial from frontend.
-     *
-     * PATCH /api/admin/testimonis/{id}/unapprove
-     */
     public function unapprove(Testimoni $testimoni): JsonResponse
     {
         $testimoni->update(['is_approved' => false]);
@@ -133,11 +97,6 @@ class TestimoniController extends Controller
         return response()->json(['message' => 'Testimoni disembunyikan dari frontend.', 'data' => $testimoni->fresh()]);
     }
 
-    /**
-     * Delete a testimonial.
-     *
-     * DELETE /api/admin/testimonis/{id}
-     */
     public function destroy(Testimoni $testimoni): JsonResponse
     {
         $testimoni->delete();

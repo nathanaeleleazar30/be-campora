@@ -9,23 +9,15 @@ use Illuminate\Http\Request;
 
 class BarangController extends Controller
 {
-    /**
-     * Display a paginated listing of active items.
-     * Supports filtering by id_kategori and search by nama_barang.
-     *
-     * GET /api/barangs
-     */
     public function index(Request $request): JsonResponse
     {
         $query = Barang::with(['kategori', 'fotos'])
             ->where('is_aktif', true);
 
-        // Filter by category
         if ($request->filled('id_kategori')) {
             $query->where('id_kategori', $request->id_kategori);
         }
 
-        // Search by name
         if ($request->filled('search')) {
             $query->where('nama_barang', 'like', '%' . $request->search . '%');
         }
@@ -35,11 +27,6 @@ class BarangController extends Controller
         return response()->json($barangs);
     }
 
-    /**
-     * Store a newly created barang in storage.
-     *
-     * POST /api/barangs
-     */
     public function store(Request $request): JsonResponse
     {
         $validated = $request->validate([
@@ -60,11 +47,6 @@ class BarangController extends Controller
         ], 201);
     }
 
-    /**
-     * Display the specified barang with its photos and category.
-     *
-     * GET /api/barangs/{id}
-     */
     public function show(Barang $barang): JsonResponse
     {
         return response()->json(
@@ -72,11 +54,6 @@ class BarangController extends Controller
         );
     }
 
-    /**
-     * Update the specified barang in storage.
-     *
-     * PUT /api/barangs/{id}
-     */
     public function update(Request $request, Barang $barang): JsonResponse
     {
         $validated = $request->validate([
@@ -97,14 +74,8 @@ class BarangController extends Controller
         ]);
     }
 
-    /**
-     * Soft-deactivate (or permanently delete) the specified barang.
-     *
-     * DELETE /api/barangs/{id}
-     */
     public function destroy(Barang $barang): JsonResponse
     {
-        // Use soft-deactivation to preserve availability records
         $barang->update(['is_aktif' => false]);
 
         return response()->json([

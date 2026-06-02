@@ -10,12 +10,6 @@ use Illuminate\Support\Carbon;
 
 class KetersediaanBarangController extends Controller
 {
-    /**
-     * Return real-time stock availability for ALL active barangs for today.
-     * Used by the customer frontend to hide out-of-stock items.
-     *
-     * GET /api/ketersediaan/today
-     */
     public function checkToday(): JsonResponse
     {
         $today = Carbon::today()->toDateString();
@@ -40,12 +34,6 @@ class KetersediaanBarangController extends Controller
         return response()->json($result);
     }
 
-    /**
-     * Display a listing of ketersediaan records.
-     * Optionally filter by id_barang.
-     *
-     * GET /api/ketersediaan
-     */
     public function index(Request $request): JsonResponse
     {
         $query = KetersediaanBarang::with(['barang', 'admin']);
@@ -57,11 +45,6 @@ class KetersediaanBarangController extends Controller
         return response()->json($query->orderBy('tanggal_mulai')->paginate(20));
     }
 
-    /**
-     * Store a new ketersediaan (rental booking block) record.
-     *
-     * POST /api/ketersediaan
-     */
     public function store(Request $request): JsonResponse
     {
         $validated = $request->validate([
@@ -73,7 +56,6 @@ class KetersediaanBarangController extends Controller
             'catatan'        => 'nullable|string',
         ]);
 
-        // Check stock availability before creating the record
         $availabilityResult = $this->getAvailableStock(
             $validated['id_barang'],
             $validated['tanggal_mulai'],
@@ -95,11 +77,6 @@ class KetersediaanBarangController extends Controller
         ], 201);
     }
 
-    /**
-     * Bulk sync dates from calendar.
-     *
-     * POST /api/ketersediaan/sync
-     */
     public function syncDates(Request $request): JsonResponse
     {
         $request->validate([
@@ -118,7 +95,6 @@ class KetersediaanBarangController extends Controller
             $status = $change['status'];
 
             if ($status === 'merah') {
-                // If not exist for this exact date, create
                 $exists = KetersediaanBarang::where('id_barang', $idBarang)
                             ->whereDate('tanggal_mulai', '<=', $date)
                             ->whereDate('tanggal_selesai', '>=', $date)
@@ -135,7 +111,6 @@ class KetersediaanBarangController extends Controller
                     ]);
                 }
             } else if ($status === 'hijau') {
-                // Delete existing bookings that cover this date
                 KetersediaanBarang::where('id_barang', $idBarang)
                             ->whereDate('tanggal_mulai', '<=', $date)
                             ->whereDate('tanggal_selesai', '>=', $date)
@@ -148,11 +123,6 @@ class KetersediaanBarangController extends Controller
         ]);
     }
 
-    /**
-     * Check real-time stock availability for a given barang and date range.
-     *
-     * GET /api/ketersediaan/check?id_barang=1&tanggal_mulai=2025-07-01&tanggal_selesai=2025-07-05
-     */
     public function checkAvailability(Request $request): JsonResponse
     {
         $request->validate([
@@ -170,11 +140,6 @@ class KetersediaanBarangController extends Controller
         return response()->json($result);
     }
 
-    /**
-     * Update an existing ketersediaan record.
-     *
-     * PUT /api/ketersediaan/{id}
-     */
     public function update(Request $request, KetersediaanBarang $ketersediaan): JsonResponse
     {
         $validated = $request->validate([
@@ -192,11 +157,6 @@ class KetersediaanBarangController extends Controller
         ]);
     }
 
-    /**
-     * Remove the specified ketersediaan record.
-     *
-     * DELETE /api/ketersediaan/{id}
-     */
     public function destroy(KetersediaanBarang $ketersediaan): JsonResponse
     {
         $ketersediaan->delete();
@@ -206,19 +166,10 @@ class KetersediaanBarangController extends Controller
         ]);
     }
 
-    // ----------------------------------------------------------------
-    // Private Helpers
-    // ----------------------------------------------------------------
-
-    /**
-     * Calculate how many units of a barang are still available
-     * during the requested date range by summing conflicting bookings.
-     */
     private function getAvailableStock(int $idBarang, string $mulai, string $selesai): array
     {
         $barang = Barang::findOrFail($idBarang);
 
-        // Sum stok_disewa for all overlapping ketersediaan records
         $stokDisewa = KetersediaanBarang::where('id_barang', $idBarang)
             ->whereDate('tanggal_mulai', '<=', $selesai)
             ->whereDate('tanggal_selesai', '>=', $mulai)
