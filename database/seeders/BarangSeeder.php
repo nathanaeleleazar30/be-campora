@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 namespace Database\Seeders;
 
@@ -176,6 +176,7 @@ class BarangSeeder extends Seeder
                 'rating'         => 0,
                 'jumlah_review'  => 0,
             ],
+
 
         ];
 
