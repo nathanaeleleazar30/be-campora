@@ -24,8 +24,8 @@ class KetersediaanBarangController extends Controller
 
         $result = $barangs->map(function (Barang $barang) use ($today) {
             $stokDisewa = KetersediaanBarang::where('id_barang', $barang->id_barang)
-                ->where('tanggal_mulai', '<=', $today)
-                ->where('tanggal_selesai', '>=', $today)
+                ->whereDate('tanggal_mulai', '<=', $today)
+                ->whereDate('tanggal_selesai', '>=', $today)
                 ->sum('stok_disewa');
 
             $stokTersedia = max(0, $barang->stok_total - $stokDisewa);
@@ -120,8 +120,8 @@ class KetersediaanBarangController extends Controller
             if ($status === 'merah') {
                 // If not exist for this exact date, create
                 $exists = KetersediaanBarang::where('id_barang', $idBarang)
-                            ->where('tanggal_mulai', '<=', $date)
-                            ->where('tanggal_selesai', '>=', $date)
+                            ->whereDate('tanggal_mulai', '<=', $date)
+                            ->whereDate('tanggal_selesai', '>=', $date)
                             ->exists();
                 
                 if (!$exists) {
@@ -137,8 +137,8 @@ class KetersediaanBarangController extends Controller
             } else if ($status === 'hijau') {
                 // Delete existing bookings that cover this date
                 KetersediaanBarang::where('id_barang', $idBarang)
-                            ->where('tanggal_mulai', '<=', $date)
-                            ->where('tanggal_selesai', '>=', $date)
+                            ->whereDate('tanggal_mulai', '<=', $date)
+                            ->whereDate('tanggal_selesai', '>=', $date)
                             ->delete();
             }
         }
@@ -220,8 +220,8 @@ class KetersediaanBarangController extends Controller
 
         // Sum stok_disewa for all overlapping ketersediaan records
         $stokDisewa = KetersediaanBarang::where('id_barang', $idBarang)
-            ->where('tanggal_mulai', '<=', $selesai)
-            ->where('tanggal_selesai', '>=', $mulai)
+            ->whereDate('tanggal_mulai', '<=', $selesai)
+            ->whereDate('tanggal_selesai', '>=', $mulai)
             ->sum('stok_disewa');
 
         $stokTersedia = $barang->stok_total - $stokDisewa;
