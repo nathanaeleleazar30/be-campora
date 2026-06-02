@@ -176,8 +176,56 @@ class BarangSeeder extends Seeder
                 'rating'         => 0,
                 'jumlah_review'  => 0,
             ],
-
-
+            [
+                'nama_barang'    => 'Jacket Gunung',
+                'kategori'       => 'Perlengkapan',
+                'harga_per_hari' => 20000,
+                'merk'           => 'The North Face',
+                'spesifikasi'    => "Jaket gunung anti angin dan air untuk pendakian.\n\nFitur:\n- Anti Angin\n- Waterproof\n- Ringan\n- Pockets",
+                'stok_total'     => 12,
+                'rating'         => 0,
+                'jumlah_review'  => 0,
+            ],
+            [
+                'nama_barang'    => 'Snow Jacket',
+                'kategori'       => 'Perlengkapan',
+                'harga_per_hari' => 30000,
+                'merk'           => 'Columbia',
+                'spesifikasi'    => "Jaket tebal untuk suhu sangat dingin dan salju.\n\nFitur:\n- Insulated\n- Waterproof\n- Hood\n- Warm Lining",
+                'stok_total'     => 8,
+                'rating'         => 0,
+                'jumlah_review'  => 0,
+            ],
+            [
+                'nama_barang'    => 'Jacket Outdoor',
+                'kategori'       => 'Perlengkapan',
+                'harga_per_hari' => 25000,
+                'merk'           => 'Patagonia',
+                'spesifikasi'    => "Jaket outdoor serbaguna untuk berbagai aktivitas luar ruang.\n\nFitur:\n- Breathable\n- Wind Resistant\n- Packable\n- Lightweight",
+                'stok_total'     => 10,
+                'rating'         => 0,
+                'jumlah_review'  => 0,
+            ],
+            [
+                'nama_barang'    => 'Jacket Gunung Premium',
+                'kategori'       => 'Perlengkapan',
+                'harga_per_hari' => 25000,
+                'merk'           => "Arc'teryx",
+                'spesifikasi'    => "Jaket gunung premium dengan teknologi terkini.\n\nFitur:\n- Gore-Tex\n- Waterproof\n- Breathable\n- Seam Sealed",
+                'stok_total'     => 5,
+                'rating'         => 0,
+                'jumlah_review'  => 0,
+            ],
+            [
+                'nama_barang'    => 'Sepatu Hiking',
+                'kategori'       => 'Perlengkapan',
+                'harga_per_hari' => 30000,
+                'merk'           => 'Salomon',
+                'spesifikasi'    => "Sepatu hiking waterproof dengan grip anti-slip.\n\nFitur:\n- Waterproof\n- Anti-Slip Sole\n- Ankle Support\n- Breathable",
+                'stok_total'     => 10,
+                'rating'         => 0,
+                'jumlah_review'  => 0,
+            ],
         ];
 
         $fotoMapping = [
