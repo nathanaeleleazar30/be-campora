@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 namespace Database\Seeders;
 
@@ -19,7 +19,7 @@ class BarangSeeder extends Seeder
         $kategoris = KategoriBarang::pluck('id_kategori', 'nama_kategori');
 
         $barangs = [
-            // ── Tenda ──────────────────────────────────────────────────────
+            // â”€â”€ Tenda â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             [
                 'nama_barang'    => 'Tenda 2 Orang',
                 'kategori'       => 'Tenda',
@@ -27,8 +27,8 @@ class BarangSeeder extends Seeder
                 'merk'           => 'Consina',
                 'spesifikasi'    => "Tenda ringan kapasitas 2 orang, mudah dibawa dan dipasang.\n\nFitur:\n- Kapasitas 2 Orang\n- Waterproof\n- Ringan & Kompak\n- Mudah Dipasang",
                 'stok_total'     => 8,
-                'rating'         => 4.7,
-                'jumlah_review'  => 124,
+                'rating'         => 0,
+                'jumlah_review'  => 0,
             ],
             [
                 'nama_barang'    => 'Tenda Family 8 Orang',
@@ -37,8 +37,8 @@ class BarangSeeder extends Seeder
                 'merk'           => 'Eiger',
                 'spesifikasi'    => "Tenda luas untuk keluarga besar, kapasitas hingga 8 orang.\n\nFitur:\n- Kapasitas 8 Orang\n- Dua Pintu\n- Ventilasi Baik\n- Waterproof",
                 'stok_total'     => 4,
-                'rating'         => 4.8,
-                'jumlah_review'  => 56,
+                'rating'         => 0,
+                'jumlah_review'  => 0,
             ],
             [
                 'nama_barang'    => 'Tenda Family 4 Orang',
@@ -47,8 +47,8 @@ class BarangSeeder extends Seeder
                 'merk'           => 'Quechua',
                 'spesifikasi'    => "Tenda keluarga 4 orang dengan ruang yang luas dan nyaman.\n\nFitur:\n- Kapasitas 4 Orang\n- Easy Setup\n- Waterproof\n- Mesh Ventilation",
                 'stok_total'     => 6,
-                'rating'         => 4.8,
-                'jumlah_review'  => 301,
+                'rating'         => 0,
+                'jumlah_review'  => 0,
             ],
             [
                 'nama_barang'    => 'Tenda 8 Orang',
@@ -57,11 +57,11 @@ class BarangSeeder extends Seeder
                 'merk'           => 'Naturehike',
                 'spesifikasi'    => "Tenda besar 8 orang cocok untuk camping keluarga besar.\n\nFitur:\n- Kapasitas 8 Orang\n- Dome Style\n- Waterproof\n- Carrying Bag",
                 'stok_total'     => 3,
-                'rating'         => 4.8,
-                'jumlah_review'  => 271,
+                'rating'         => 0,
+                'jumlah_review'  => 0,
             ],
 
-            // ── Carrier ────────────────────────────────────────────────────
+            // â”€â”€ Carrier â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             [
                 'nama_barang'    => 'Carrier Bag 40L',
                 'kategori'       => 'Carrier',
@@ -69,8 +69,8 @@ class BarangSeeder extends Seeder
                 'merk'           => 'Deuter',
                 'spesifikasi'    => "Tas carrier 40 liter cocok untuk pendakian 2-3 hari.\n\nFitur:\n- 40 Liter\n- Hip Belt\n- Rain Cover\n- Multiple Compartments",
                 'stok_total'     => 10,
-                'rating'         => 4.2,
-                'jumlah_review'  => 95,
+                'rating'         => 0,
+                'jumlah_review'  => 0,
             ],
             [
                 'nama_barang'    => 'Carrier 80L',
@@ -79,8 +79,8 @@ class BarangSeeder extends Seeder
                 'merk'           => 'Osprey',
                 'spesifikasi'    => "Carrier besar 80L untuk ekspedisi panjang dan beban berat.\n\nFitur:\n- 80 Liter\n- Frame Aluminium\n- Load Lifter\n- Rain Cover Included",
                 'stok_total'     => 5,
-                'rating'         => 4.5,
-                'jumlah_review'  => 87,
+                'rating'         => 0,
+                'jumlah_review'  => 0,
             ],
             [
                 'nama_barang'    => 'Carrier Bag 60L',
@@ -89,8 +89,8 @@ class BarangSeeder extends Seeder
                 'merk'           => 'Gregory',
                 'spesifikasi'    => "Carrier 60L ideal untuk pendakian multi-hari.\n\nFitur:\n- 60 Liter\n- Ergonomic Back\n- Side Pockets\n- Hydration Compatible",
                 'stok_total'     => 7,
-                'rating'         => 4.5,
-                'jumlah_review'  => 88,
+                'rating'         => 0,
+                'jumlah_review'  => 0,
             ],
             [
                 'nama_barang'    => 'Carrier Bag 20L',
@@ -99,43 +99,43 @@ class BarangSeeder extends Seeder
                 'merk'           => 'Deuter',
                 'spesifikasi'    => "Daypack 20L ringan untuk hiking sehari.\n\nFitur:\n- 20 Liter\n- Hydration Pocket\n- Lightweight\n- Breathable Back",
                 'stok_total'     => 12,
-                'rating'         => 4.8,
-                'jumlah_review'  => 140,
+                'rating'         => 0,
+                'jumlah_review'  => 0,
             ],
 
-            // ── Sleeping Bag ───────────────────────────────────────────────
+            // â”€â”€ Sleeping Bag â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             [
                 'nama_barang'    => 'Sleeping Bag Pillow',
                 'kategori'       => 'Sleeping Bag',
                 'harga_per_hari' => 25000,
                 'merk'           => 'Handar',
-                'spesifikasi'    => "Sleeping bag nyaman untuk suhu -5°C hingga 10°C.\n\nFitur:\n- Suhu -5°C - 10°C\n- Lightweight\n- Compact\n- Zipper Dua Arah",
+                'spesifikasi'    => "Sleeping bag nyaman untuk suhu -5Â°C hingga 10Â°C.\n\nFitur:\n- Suhu -5Â°C - 10Â°C\n- Lightweight\n- Compact\n- Zipper Dua Arah",
                 'stok_total'     => 15,
-                'rating'         => 4.6,
-                'jumlah_review'  => 247,
+                'rating'         => 0,
+                'jumlah_review'  => 0,
             ],
             [
                 'nama_barang'    => 'Sleeping Bag Big',
                 'kategori'       => 'Sleeping Bag',
                 'harga_per_hari' => 45000,
                 'merk'           => 'Mountain Hardwear',
-                'spesifikasi'    => "Sleeping bag mummy untuk pendakian ekstrem.\n\nFitur:\n- Mummy Shape\n- Suhu -10°C\n- Down Insulation\n- Kompak",
+                'spesifikasi'    => "Sleeping bag mummy untuk pendakian ekstrem.\n\nFitur:\n- Mummy Shape\n- Suhu -10Â°C\n- Down Insulation\n- Kompak",
                 'stok_total'     => 6,
-                'rating'         => 4.8,
-                'jumlah_review'  => 135,
+                'rating'         => 0,
+                'jumlah_review'  => 0,
             ],
             [
                 'nama_barang'    => 'Sleeping Bag Standar',
                 'kategori'       => 'Sleeping Bag',
                 'harga_per_hari' => 15000,
                 'merk'           => 'Consina',
-                'spesifikasi'    => "Sleeping bag standar untuk suhu 5°C hingga 15°C.\n\nFitur:\n- Suhu 5°C - 15°C\n- Rectangular Shape\n- Soft Lining\n- Machine Washable",
+                'spesifikasi'    => "Sleeping bag standar untuk suhu 5Â°C hingga 15Â°C.\n\nFitur:\n- Suhu 5Â°C - 15Â°C\n- Rectangular Shape\n- Soft Lining\n- Machine Washable",
                 'stok_total'     => 20,
-                'rating'         => 4.7,
-                'jumlah_review'  => 190,
+                'rating'         => 0,
+                'jumlah_review'  => 0,
             ],
 
-            // ── Perlengkapan ───────────────────────────────────────────────
+            // â”€â”€ Perlengkapan â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             [
                 'nama_barang'    => 'Head Lamp',
                 'kategori'       => 'Perlengkapan',
@@ -143,8 +143,8 @@ class BarangSeeder extends Seeder
                 'merk'           => 'Black Diamond',
                 'spesifikasi'    => "Lampu kepala LED terang untuk penerangan malam hari.\n\nFitur:\n- LED Terang\n- Tahan Air\n- Baterai Tahan Lama\n- Adjustable Strap",
                 'stok_total'     => 25,
-                'rating'         => 4.5,
-                'jumlah_review'  => 88,
+                'rating'         => 0,
+                'jumlah_review'  => 0,
             ],
             [
                 'nama_barang'    => 'Cooking Set',
@@ -153,8 +153,8 @@ class BarangSeeder extends Seeder
                 'merk'           => 'Snow Peak',
                 'spesifikasi'    => "Set peralatan memasak lengkap untuk camping di alam terbuka.\n\nFitur:\n- 5 Pieces Set\n- Non-Stick\n- Compact Storage\n- Anti-Gores",
                 'stok_total'     => 8,
-                'rating'         => 4.5,
-                'jumlah_review'  => 200,
+                'rating'         => 0,
+                'jumlah_review'  => 0,
             ],
             [
                 'nama_barang'    => 'Trekking Pole',
@@ -163,8 +163,8 @@ class BarangSeeder extends Seeder
                 'merk'           => 'Black Diamond',
                 'spesifikasi'    => "Trekking pole aluminium ringan dan kuat untuk pendakian.\n\nFitur:\n- Aluminium\n- Adjustable Height\n- Cork Handle\n- Wrist Strap",
                 'stok_total'     => 18,
-                'rating'         => 4.9,
-                'jumlah_review'  => 340,
+                'rating'         => 0,
+                'jumlah_review'  => 0,
             ],
             [
                 'nama_barang'    => 'Cooking Set Portable',
@@ -173,85 +173,27 @@ class BarangSeeder extends Seeder
                 'merk'           => 'MSR',
                 'spesifikasi'    => "Set memasak portabel ringan untuk pendakian.\n\nFitur:\n- Titanium Material\n- Lightweight\n- 3 Pieces\n- Compact",
                 'stok_total'     => 6,
-                'rating'         => 4.5,
-                'jumlah_review'  => 110,
+                'rating'         => 0,
+                'jumlah_review'  => 0,
             ],
 
-            // ── Pakaian ────────────────────────────────────────────────────
-            [
-                'nama_barang'    => 'Jacket Gunung',
-                'kategori'       => 'Perlengkapan',
-                'harga_per_hari' => 20000,
-                'merk'           => 'The North Face',
-                'spesifikasi'    => "Jaket gunung anti angin dan air untuk pendakian.\n\nFitur:\n- Anti Angin\n- Waterproof\n- Ringan\n- Pockets",
-                'stok_total'     => 12,
-                'rating'         => 4.5,
-                'jumlah_review'  => 200,
-            ],
-            [
-                'nama_barang'    => 'Snow Jacket',
-                'kategori'       => 'Perlengkapan',
-                'harga_per_hari' => 30000,
-                'merk'           => 'Columbia',
-                'spesifikasi'    => "Jaket tebal untuk suhu sangat dingin dan salju.\n\nFitur:\n- Insulated\n- Waterproof\n- Hood\n- Warm Lining",
-                'stok_total'     => 8,
-                'rating'         => 4.8,
-                'jumlah_review'  => 110,
-            ],
-            [
-                'nama_barang'    => 'Jacket Outdoor',
-                'kategori'       => 'Perlengkapan',
-                'harga_per_hari' => 25000,
-                'merk'           => 'Patagonia',
-                'spesifikasi'    => "Jaket outdoor serbaguna untuk berbagai aktivitas luar ruang.\n\nFitur:\n- Breathable\n- Wind Resistant\n- Packable\n- Lightweight",
-                'stok_total'     => 10,
-                'rating'         => 4.8,
-                'jumlah_review'  => 140,
-            ],
-            [
-                'nama_barang'    => 'Jacket Gunung Premium',
-                'kategori'       => 'Perlengkapan',
-                'harga_per_hari' => 25000,
-                'merk'           => "Arc'teryx",
-                'spesifikasi'    => "Jaket gunung premium dengan teknologi terkini.\n\nFitur:\n- Gore-Tex\n- Waterproof\n- Breathable\n- Seam Sealed",
-                'stok_total'     => 5,
-                'rating'         => 4.5,
-                'jumlah_review'  => 88,
-            ],
-
-            // ── Sepatu ─────────────────────────────────────────────────────
-            [
-                'nama_barang'    => 'Sepatu Hiking',
-                'kategori'       => 'Perlengkapan',
-                'harga_per_hari' => 30000,
-                'merk'           => 'Salomon',
-                'spesifikasi'    => "Sepatu hiking waterproof dengan grip anti-slip.\n\nFitur:\n- Waterproof\n- Anti-Slip Sole\n- Ankle Support\n- Breathable",
-                'stok_total'     => 10,
-                'rating'         => 4.9,
-                'jumlah_review'  => 179,
-            ],
         ];
 
         $fotoMapping = [
-            'Tenda 2 Orang' => 'tenda 2 orang.png',
-            'Head Lamp' => 'head lamp.png',
+            'Tenda 2 Orang'        => 'tenda 2 orang.png',
+            'Head Lamp'            => 'head lamp.png',
             'Tenda Family 8 Orang' => 'tenda 8 orang.png',
-            'Jacket Gunung' => 'jacket gunung.png',
-            'Snow Jacket' => 'snow jacket.png',
-            'Carrier Bag 40L' => 'carrier bag 40L.png',
+            'Carrier Bag 40L'      => 'carrier bag 40L.png',
             'Tenda Family 4 Orang' => 'tenda family 4 orang.png',
-            'Jacket Outdoor' => 'jacket outdoor.png',
-            'Jacket Gunung Premium' => 'jacket gunung orange.png',
-            'Sleeping Bag Pillow' => 'sleeping bag standar.png',
-            'Sepatu Hiking' => 'sepatu hiking solomon.png',
-            'Carrier 80L' => 'carrier 80L.png',
-            'Sleeping Bag Big' => 'sleeping bag big.png',
-            'Carrier Bag 60L' => 'carrier bag 60L.png',
-            'Cooking Set' => 'cooking set.png',
-            'Trekking Pole' => 'trekking pole.png',
-            'Tenda 8 Orang' => 'tenda 8 orang.png',
+            'Sleeping Bag Pillow'  => 'sleeping bag standar.png',
+            'Carrier 80L'          => 'carrier 80L.png',
+            'Sleeping Bag Big'     => 'sleeping bag big.png',
+            'Carrier Bag 60L'      => 'carrier bag 60L.png',
+            'Cooking Set'          => 'cooking set.png',
+            'Trekking Pole'        => 'trekking pole.png',
+            'Tenda 8 Orang'        => 'tenda 8 orang.png',
             'Cooking Set Portable' => 'cooking set.png',
-            'Carrier Bag 20L' => 'carrier bag 20L.png',
+            'Carrier Bag 20L'      => 'carrier bag 20L.png',
             'Sleeping Bag Standar' => 'sleeping bag standar putih.png',
         ];
 
@@ -285,3 +227,4 @@ class BarangSeeder extends Seeder
         }
     }
 }
+
