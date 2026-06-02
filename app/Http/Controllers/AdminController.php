@@ -9,11 +9,6 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
-    /**
-     * Admin login endpoint.
-     *
-     * POST /api/admin/login
-     */
     public function login(Request $request): JsonResponse
     {
         $validator = \Illuminate\Support\Facades\Validator::make($request->all(), [

@@ -9,9 +9,6 @@ use Illuminate\Support\Facades\Storage;
 
 class PaketController extends Controller
 {
-    /**
-     * List all active packages (public).
-     */
     public function index(): JsonResponse
     {
         return response()->json(
@@ -19,9 +16,6 @@ class PaketController extends Controller
         );
     }
 
-    /**
-     * Store a new package.
-     */
     public function store(Request $request): JsonResponse
     {
         $validated = $request->validate([
@@ -44,9 +38,6 @@ class PaketController extends Controller
         return response()->json(['message' => 'Paket berhasil ditambahkan.', 'data' => $paket], 201);
     }
 
-    /**
-     * Update an existing package.
-     */
     public function update(Request $request, Paket $paket): JsonResponse
     {
         $validated = $request->validate([
@@ -64,9 +55,6 @@ class PaketController extends Controller
         return response()->json(['message' => 'Paket berhasil diperbarui.', 'data' => $paket->fresh()]);
     }
 
-    /**
-     * Delete a package.
-     */
     public function destroy(Paket $paket): JsonResponse
     {
         $paket->update(['is_aktif' => false]);
